@@ -192,6 +192,26 @@
     opacity: 0.8;
   }
 
+  .hero-logo-badge{
+    position: relative;
+    z-index: 2;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 30px;
+    border: 1px solid var(--rose-line);
+    box-shadow: 0 20px 44px rgba(156, 61, 89, 0.25);
+  }
+  .hero-logo-badge video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (max-width: 600px){
+    .hero-logo-badge{ width: 180px; height: 180px; margin-bottom: 20px; }
+  }
+
   /* ---------- MARQUEE ---------- */
   .marquee{
     background: var(--rose-deep);
@@ -802,9 +822,7 @@
 
 <nav>
   <div class="brand">
-    <video autoplay muted loop playsinline poster="logo.png" style="width:38px;height:38px;border-radius:50%;object-fit:cover;">
-      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3F3ExLvss4i6n7uULZOMP1nsUWr/hf_20260711_225709_1831f5cc-95c7-4d58-9391-ecf5a1577fe3.mp4" type="video/mp4">
-    </video>
+    <img src="logo.png" alt="Copenhagen Nailzzz logo">
     copenhagen nailzzz
   </div>
   <ul>
@@ -822,6 +840,12 @@
   <svg class="sparkle" style="top:18%; right:14%; width:40px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
   <svg class="sparkle" style="top:30%; right:8%; width:20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
   <svg class="sparkle" style="bottom:22%; left:10%; width:26px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
+
+  <div class="hero-logo-badge">
+    <video autoplay muted loop playsinline poster="logo.png">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3F3ExLvss4i6n7uULZOMP1nsUWr/hf_20260711_225709_1831f5cc-95c7-4d58-9391-ecf5a1577fe3.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <div class="hero-eyebrow">Valby &middot; Copenhagen</div>
   <h1>copenhagen <span class="script">nailzzz</span></h1>
