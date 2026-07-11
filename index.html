@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copenhagen Nailzzz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,500&family=Petit+Formal+Script&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blush-bg: #f7e3e0;
+    --blush-bg-deep: #f2d0d3;
+    --ivory: #fffaf6;
+    --blush-card: #f4c9cf;
+    --rose-deep: #9c3d59;
+    --rose-mid: #b8556f;
+    --rose-line: #d68a99;
+    --ink: #2e1418;
+    --gold: #b8873f;
+    --white: #fffdfc;
+  }
+
+  body{ background: var(--ivory); }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  body{
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Playfair Display', serif;
+    color: var(--rose-deep);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .script{
+    font-family: 'Petit Formal Script', cursive;
+    color: var(--rose-deep);
+    font-weight: 400;
+  }
+
+  a{ text-decoration: none; color: inherit; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 6%;
+    background: rgba(255, 250, 246, 0.9);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rose-line);
+  }
+
+  nav .brand{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--rose-deep);
+  }
+  nav .brand img{
+    width: 38px; height: 38px; border-radius: 50%;
+    object-fit: cover;
+  }
+
+  nav ul{
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+  }
+  nav ul a:hover{ color: var(--rose-deep); }
+
+  .nav-book{
+    background: var(--rose-deep);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+  }
+  .nav-book:hover{ background: var(--ink); }
+
+  @media (max-width: 800px){
+    nav ul{ display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 6% 40px;
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--blush-bg) 0%, var(--blush-bg-deep) 55%, var(--blush-card) 100%);
+  }
+
+  .hero-badge{
+    position: absolute;
+    width: 620px;
+    height: 620px;
+    border: 1px solid var(--rose-line);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+  }
+  .hero-badge.two{
+    width: 720px;
+    height: 720px;
+    opacity: 0.3;
+  }
+
+  .hero-eyebrow{
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose-mid);
+    margin-bottom: 18px;
+    z-index: 2;
+  }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
+    line-height: 1.05;
+    z-index: 2;
+  }
+  .hero h1 .script{
+    font-size: 1.3em;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .hero p.sub{
+    z-index: 2;
+    max-width: 480px;
+    margin: 26px auto 34px;
+    font-size: 1rem;
+    color: var(--ink);
+    opacity: 0.75;
+    line-height: 1.6;
+  }
+
+  .cta-row{
+    z-index: 2;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary, .btn-ghost{
+    padding: 14px 34px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+  }
+  .btn-primary{
+    background: var(--rose-deep);
+    color: var(--white);
+  }
+  .btn-primary:hover{ background: var(--ink); }
+  .btn-ghost{
+    border: 1px solid var(--rose-deep);
+    color: var(--rose-deep);
+  }
+  .btn-ghost:hover{ background: var(--blush-card); }
+
+  .sparkle{
+    position: absolute;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    background: var(--rose-deep);
+    color: var(--white);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track{
+    display: inline-block;
+    animation: scroll 22s linear infinite;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .marquee-track span{ margin: 0 28px; }
+  @keyframes scroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{
+    padding: 100px 6%;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .section-wrap{ width: 100%; }
+  .section-wrap.tone-a{ background: var(--ivory); }
+  .section-wrap.tone-b{ background: var(--blush-bg); }
+  .section-wrap section{ padding-left: 6%; padding-right: 6%; }
+  .section-head{
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-head .eyebrow{
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose-mid);
+    margin-bottom: 10px;
+  }
+  .section-head h2{
+    font-size: clamp(2rem, 4vw, 2.8rem);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-photo{
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 50% 50% 4px 4px / 60% 60% 4px 4px;
+    background: linear-gradient(160deg, var(--blush-card), #e894a2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--rose-deep);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-align: center;
+    border: 1px solid var(--rose-line);
+    box-shadow: 0 10px 24px rgba(156, 61, 89, 0.15);
+  }
+  .about-text p{
+    line-height: 1.8;
+    margin-bottom: 18px;
+    opacity: 0.85;
+  }
+  .about-text .script{ font-size: 1.6rem; margin-bottom: 14px; display: block; }
+
+  @media (max-width: 800px){
+    .about{ grid-template-columns: 1fr; }
+    .about-photo{ max-width: 280px; margin: 0 auto; }
+  }
+
+  /* ---------- PRICE LIST ---------- */
+  .price-list{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .price-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--ivory);
+    border: 1px solid var(--rose-line);
+    border-radius: 999px;
+    padding: 14px 30px;
+    gap: 20px;
+    box-shadow: 0 6px 18px rgba(156, 61, 89, 0.08);
+  }
+  .price-row .left{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .price-dot{
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--rose-mid);
+    flex-shrink: 0;
+  }
+  .price-name{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+  .price-name small{
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.78rem;
+    color: var(--rose-mid);
+    margin-top: 2px;
+  }
+  .price-amount{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--rose-deep);
+    white-space: nowrap;
+  }
+  .price-amount span{ font-size: 0.8rem; }
+
+  @media (max-width: 600px){
+    .price-row{ padding: 14px 18px; }
+    .price-name{ font-size: 0.9rem; }
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .gallery-item{
+    aspect-ratio: 1/1.15;
+    border-radius: 18px;
+    background: linear-gradient(150deg, var(--blush-card), #ecacb6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--rose-deep);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid var(--rose-line);
+    box-shadow: 0 8px 20px rgba(156, 61, 89, 0.12);
+  }
+  .gallery-item:nth-child(3n+1){ margin-top: 24px; }
+
+  @media (max-width: 800px){
+    .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:nth-child(3n+1){ margin-top: 0; }
+  }
+
+  /* ---------- BOOKING FLOW ---------- */
+  .booking-wrap{
+    background: linear-gradient(180deg, var(--blush-bg), var(--ivory));
+  }
+  .booking-card{
+    background: var(--ivory);
+    border: 1px solid var(--rose-line);
+    border-radius: 24px;
+    box-shadow: 0 16px 40px rgba(156, 61, 89, 0.12);
+    padding: 44px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px){
+    .booking-card{ padding: 26px 20px; }
+  }
+
+  .steps{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .steps::before{
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 6%;
+    right: 6%;
+    height: 1px;
+    background: var(--rose-line);
+    z-index: 0;
+  }
+  .step-item{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+  .step-dot{
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--ivory);
+    border: 1px solid var(--rose-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: var(--rose-mid);
+    font-family: 'Playfair Display', serif;
+    transition: all 0.2s ease;
+  }
+  .step-item.active .step-dot{
+    background: var(--rose-deep);
+    border-color: var(--rose-deep);
+    color: var(--white);
+  }
+  .step-item.done .step-dot{
+    background: var(--rose-mid);
+    border-color: var(--rose-mid);
+    color: var(--white);
+  }
+  .step-label{
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    color: var(--ink);
+    opacity: 0.6;
+    text-align: center;
+  }
+  .step-item.active .step-label{ opacity: 1; color: var(--rose-deep); font-weight: 500; }
+
+  .booking-panel{ display: none; }
+  .booking-panel.active{ display: block; }
+
+  .service-option{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 22px;
+    border: 1px solid var(--rose-line);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .service-option:hover{ background: var(--blush-bg); }
+  .service-option.selected{
+    background: var(--blush-card);
+    border-color: var(--rose-deep);
+  }
+  .service-option .name{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+  }
+  .service-option .name small{
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.75rem;
+    color: var(--rose-mid);
+    margin-top: 2px;
+  }
+  .service-option .price{
+    font-family: 'Playfair Display', serif;
+    color: var(--rose-deep);
+    font-size: 1.15rem;
+    white-space: nowrap;
+  }
+
+  .cal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .cal-header button{
+    background: none;
+    border: 1px solid var(--rose-line);
+    border-radius: 50%;
+    width: 32px; height: 32px;
+    color: var(--rose-deep);
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  .cal-header .month-label{
+    font-family: 'Playfair Display', serif;
+    color: var(--ink);
+    font-size: 1.05rem;
+  }
+  .cal-grid{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 30px;
+  }
+  .cal-dow{
+    text-align: center;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--rose-mid);
+    padding-bottom: 6px;
+  }
+  .cal-day{
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .cal-day.empty{ cursor: default; }
+  .cal-day.past{ opacity: 0.25; cursor: not-allowed; }
+  .cal-day:not(.empty):not(.past):hover{ background: var(--blush-bg); }
+  .cal-day.selected{
+    background: var(--rose-deep);
+    color: var(--white);
+  }
+
+  .time-label{
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--rose-mid);
+    margin-bottom: 14px;
+  }
+  .time-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  @media (max-width: 500px){
+    .time-grid{ grid-template-columns: repeat(3, 1fr); }
+  }
+  .time-slot{
+    padding: 10px 4px;
+    text-align: center;
+    border: 1px solid var(--rose-line);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .time-slot:hover{ background: var(--blush-bg); }
+  .time-slot.selected{
+    background: var(--rose-deep);
+    color: var(--white);
+    border-color: var(--rose-deep);
+  }
+
+  .form-field{ margin-bottom: 18px; }
+  .form-field label{
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+    color: var(--rose-mid);
+    margin-bottom: 6px;
+  }
+  .form-field input, .form-field textarea{
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--rose-line);
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    background: var(--ivory);
+    color: var(--ink);
+  }
+  .form-field input:focus, .form-field textarea:focus{
+    outline: 2px solid var(--rose-mid);
+    outline-offset: 1px;
+  }
+
+  .booking-nav{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+  }
+  .btn-plain{
+    background: none;
+    border: none;
+    color: var(--rose-mid);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 12px 8px;
+  }
+  .btn-next{
+    background: var(--rose-deep);
+    color: var(--white);
+    border: none;
+    padding: 13px 32px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  .btn-next:disabled{
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .btn-next:not(:disabled):hover{ background: var(--ink); }
+
+  .summary-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--rose-line);
+    font-size: 0.9rem;
+  }
+  .summary-row span:first-child{ color: var(--rose-mid); }
+  .summary-row span:last-child{ font-family: 'Playfair Display', serif; color: var(--ink); }
+
+  .confirm-screen{ text-align: center; padding: 20px 0; }
+  .confirm-screen .check{
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--rose-deep);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.6rem;
+  }
+  .booking-note{
+    font-size: 0.75rem;
+    color: var(--rose-mid);
+    text-align: center;
+    margin-top: 22px;
+    opacity: 0.8;
+  }
+
+  /* ---------- PRICE CONFIGURATOR ---------- */
+  .configurator{
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .choice-group{
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .choice-word{
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--ink);
+    opacity: 0.45;
+    cursor: pointer;
+    padding-bottom: 8px;
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+  .choice-word::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    height: 2px;
+    background: var(--rose-deep);
+    border-radius: 2px;
+    transition: left 0.25s ease, right 0.25s ease;
+  }
+  .choice-word:hover{ opacity: 0.75; }
+  .choice-word.active{
+    opacity: 1;
+    color: var(--rose-deep);
+  }
+  .choice-word.active::after{ left: 0; right: 0; }
+
+  #styleGroup .choice-word{ font-size: 1rem; }
+
+  .price-reveal{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .price-reveal .blob{
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, var(--blush-card), #e28a98);
+    border-radius: 63% 37% 54% 46% / 55% 45% 55% 45%;
+    animation: blobmove 14s ease-in-out infinite;
+    box-shadow: 0 20px 44px rgba(156, 61, 89, 0.18);
+  }
+  @keyframes blobmove{
+    0%, 100%{ border-radius: 63% 37% 54% 46% / 55% 45% 55% 45%; }
+    50%{ border-radius: 42% 58% 65% 35% / 45% 58% 42% 55%; }
+  }
+  .price-reveal .content{
+    position: relative;
+    z-index: 1;
+  }
+  .price-reveal .amount{
+    font-family: 'Playfair Display', serif;
+    font-size: 3.4rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  .price-reveal .amount span:last-child{
+    font-size: 1.2rem;
+    margin-left: 4px;
+  }
+  .price-reveal .detail{
+    font-family: 'Petit Formal Script', cursive;
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-top: 8px;
+  }
+
+  @media (max-width: 500px){
+    .price-reveal{ width: 240px; height: 240px; }
+    .price-reveal .amount{ font-size: 2.6rem; }
+  }
+
+  .insta-banner{
+    background: linear-gradient(135deg, var(--blush-card), #e894a2);
+    border-radius: 28px;
+    text-align: center;
+    padding: 70px 6%;
+    margin: 0 6% 100px;
+    box-shadow: 0 14px 32px rgba(156, 61, 89, 0.18);
+  }
+  .insta-banner h2{ margin-bottom: 14px; }
+  .insta-banner p{ opacity: 0.75; margin-bottom: 28px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--ink);
+    color: #f2e4e6;
+    padding: 70px 6% 30px;
+  }
+  .footer-grid{
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .footer-grid h3{
+    color: var(--white);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+  }
+  .footer-brand .script{ color: var(--white); font-size: 1.8rem; }
+  .footer-brand p{
+    opacity: 0.65;
+    font-size: 0.85rem;
+    margin-top: 14px;
+    max-width: 280px;
+    line-height: 1.6;
+  }
+  footer ul{ list-style: none; }
+  footer li{
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    opacity: 0.75;
+  }
+  .footer-bottom{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-top: 24px;
+    font-size: 0.75rem;
+    opacity: 0.5;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  @media (max-width: 800px){
+    .footer-grid{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <img src="logo.png" alt="Copenhagen Nailzzz logo">
+    copenhagen nailzzz
+  </div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#prices">Prices</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#book" class="nav-book">Book now</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge"></div>
+  <div class="hero-badge two"></div>
+  <svg class="sparkle" style="top:18%; right:14%; width:40px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
+  <svg class="sparkle" style="top:30%; right:8%; width:20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
+  <svg class="sparkle" style="bottom:22%; left:10%; width:26px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
+
+  <div class="hero-eyebrow">Valby &middot; Copenhagen</div>
+  <h1>copenhagen <span class="script">nailzzz</span></h1>
+  <p class="sub">Hand-painted, long-lasting nails done with care. Long, short, French or full design, book your next set today.</p>
+  <div class="cta-row">
+    <a href="#book" class="btn-primary">Book an appointment</a>
+    <a href="#prices" class="btn-ghost">See price list</a>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Hand-painted nail art</span>
+    <span>&middot;</span>
+    <span>Long-lasting gel</span>
+    <span>&middot;</span>
+    <span>Based in Valby, Copenhagen</span>
+    <span>&middot;</span>
+    <span>Hand-painted nail art</span>
+    <span>&middot;</span>
+    <span>Long-lasting gel</span>
+    <span>&middot;</span>
+    <span>Based in Valby, Copenhagen</span>
+    <span>&middot;</span>
+  </div>
+</div>
+
+<div class="section-wrap tone-a">
+<section class="about" id="about">
+  <div class="about-photo">[ your photo here ]</div>
+  <div class="about-text">
+    <span class="script">a little about me</span>
+    <h2 style="margin-bottom:20px;">Meet your nail tech</h2>
+    <p>[Placeholder bio: a few lines about how she got into nails, how long she's been doing it, what she loves about it, and what clients can expect from an appointment. Warm, personal tone, first person.]</p>
+    <p>[Optional second paragraph: training/certifications, products used, or her nail philosophy.]</p>
+  </div>
+</section>
+</div>
+
+<div class="section-wrap tone-b">
+<section id="prices">
+  <div class="section-head">
+    <div class="eyebrow">Price list</div>
+    <h2>Design your set</h2>
+    <p style="margin-top:14px; opacity:0.7; max-width:460px; margin-left:auto; margin-right:auto;">
+      Pick a length and a finish, watch the price update.
+    </p>
+  </div>
+
+  <div class="configurator">
+    <div class="choice-group" id="lengthGroup">
+      <div class="choice-word" data-length="Long">Long nails</div>
+      <div class="choice-word" data-length="Short">Short nails</div>
+    </div>
+
+    <div class="choice-group" id="styleGroup"></div>
+
+    <div class="price-reveal">
+      <div class="blob"></div>
+      <div class="content">
+        <div class="amount"><span id="configPrice">250</span><span> kr</span></div>
+        <div class="detail" id="configDetail">Super design</div>
+      </div>
+    </div>
+
+    <a href="#book" class="btn-primary" id="bookThisSet">Book this set</a>
+  </div>
+</section>
+</div>
+
+<section id="gallery">
+  <div class="section-head">
+    <div class="eyebrow">Portfolio</div>
+    <h2>Recent sets</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">[ photo 1 ]</div>
+    <div class="gallery-item">[ photo 2 ]</div>
+    <div class="gallery-item">[ photo 3 ]</div>
+    <div class="gallery-item">[ photo 4 ]</div>
+    <div class="gallery-item">[ photo 5 ]</div>
+    <div class="gallery-item">[ photo 6 ]</div>
+    <div class="gallery-item">[ photo 7 ]</div>
+    <div class="gallery-item">[ photo 8 ]</div>
+  </div>
+</section>
+
+<div class="section-wrap booking-wrap">
+<section id="book">
+  <div class="section-head">
+    <div class="eyebrow">Booking</div>
+    <h2>Book your appointment</h2>
+    <p style="margin-top:14px; opacity:0.7; max-width:480px; margin-left:auto; margin-right:auto;">
+      Choose your service, pick a time that suits you, and you're booked, no messaging back and forth required.
+    </p>
+  </div>
+
+  <div class="booking-card">
+    <div class="steps">
+      <div class="step-item active" data-step="1">
+        <div class="step-dot">1</div>
+        <div class="step-label">Service</div>
+      </div>
+      <div class="step-item" data-step="2">
+        <div class="step-dot">2</div>
+        <div class="step-label">Date &amp; time</div>
+      </div>
+      <div class="step-item" data-step="3">
+        <div class="step-dot">3</div>
+        <div class="step-label">Your details</div>
+      </div>
+      <div class="step-item" data-step="4">
+        <div class="step-dot">4</div>
+        <div class="step-label">Confirm</div>
+      </div>
+    </div>
+
+    <!-- STEP 1: SERVICE -->
+    <div class="booking-panel active" id="panel-1">
+      <div class="service-option" data-name="Long nails" data-detail="Super design" data-price="250">
+        <div class="name">Long nails<small>Super design</small></div>
+        <div class="price">250 kr</div>
+      </div>
+      <div class="service-option" data-name="Long nails" data-detail="French / small design" data-price="200">
+        <div class="name">Long nails<small>With French / small design</small></div>
+        <div class="price">200 kr</div>
+      </div>
+      <div class="service-option" data-name="Long nails" data-detail="Without design" data-price="180">
+        <div class="name">Long nails<small>Without design</small></div>
+        <div class="price">180 kr</div>
+      </div>
+      <div class="service-option" data-name="Short nails" data-detail="With design" data-price="150">
+        <div class="name">Short nails<small>With design</small></div>
+        <div class="price">150 kr</div>
+      </div>
+      <div class="service-option" data-name="Short nails" data-detail="No design" data-price="100">
+        <div class="name">Short nails<small>No design</small></div>
+        <div class="price">100 kr</div>
+      </div>
+      <div class="booking-nav">
+        <span></span>
+        <button class="btn-next" id="toStep2" disabled>Continue</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: DATE & TIME -->
+    <div class="booking-panel" id="panel-2">
+      <div class="cal-header">
+        <button id="prevMonth" aria-label="Previous month">&#8249;</button>
+        <div class="month-label" id="monthLabel"></div>
+        <button id="nextMonth" aria-label="Next month">&#8250;</button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+
+      <div class="time-label">Available times</div>
+      <div class="time-grid" id="timeGrid"></div>
+
+      <div class="booking-nav">
+        <button class="btn-plain" data-back="1">&larr; Back</button>
+        <button class="btn-next" id="toStep3" disabled>Continue</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: DETAILS -->
+    <div class="booking-panel" id="panel-3">
+      <div class="form-field">
+        <label>Full name</label>
+        <input type="text" id="fName" placeholder="Your name">
+      </div>
+      <div class="form-field">
+        <label>Phone</label>
+        <input type="tel" id="fPhone" placeholder="+45 ...">
+      </div>
+      <div class="form-field">
+        <label>Email</label>
+        <input type="email" id="fEmail" placeholder="you@email.com">
+      </div>
+      <div class="form-field">
+        <label>Notes (optional)</label>
+        <textarea id="fNotes" rows="3" placeholder="Anything we should know, allergies, inspo photos, etc."></textarea>
+      </div>
+      <div class="booking-nav">
+        <button class="btn-plain" data-back="2">&larr; Back</button>
+        <button class="btn-next" id="toStep4" disabled>Review booking</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: CONFIRM -->
+    <div class="booking-panel" id="panel-4">
+      <div class="summary-row"><span>Service</span><span id="sumService"></span></div>
+      <div class="summary-row"><span>Date</span><span id="sumDate"></span></div>
+      <div class="summary-row"><span>Time</span><span id="sumTime"></span></div>
+      <div class="summary-row"><span>Name</span><span id="sumName"></span></div>
+      <div class="summary-row"><span>Contact</span><span id="sumContact"></span></div>
+      <div class="summary-row"><span>Price</span><span id="sumPrice"></span></div>
+
+      <div class="booking-nav">
+        <button class="btn-plain" data-back="3">&larr; Back</button>
+        <button class="btn-next" id="confirmBooking">Confirm booking</button>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="booking-panel" id="panel-success">
+      <div class="confirm-screen">
+        <div class="check">&#10003;</div>
+        <h3 style="margin-bottom:10px;">Booking request received</h3>
+        <p style="opacity:0.75; max-width:420px; margin:0 auto;">
+          Thanks, <span id="successName"></span>. A confirmation would normally be sent to your email/SMS here. We'll see you on <span id="successDate"></span> at <span id="successTime"></span>.
+        </p>
+      </div>
+    </div>
+
+    <p class="booking-note">This is a working mock-up of the booking flow. In the live version, confirmed bookings would sync to a real calendar and send an automatic confirmation by email or SMS.</p>
+  </div>
+</section>
+</div>
+
+<div class="insta-banner">
+  <h2>Follow along</h2>
+  <p>Daily nail inspo, new designs and behind-the-scenes from the studio.</p>
+  <div class="cta-row" style="justify-content:center;">
+    <a href="#" class="btn-primary">@copenhagennailzzz</a>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="script">copenhagen nailzzz</span>
+      <p>Hand-painted nail sets in Valby, Copenhagen. Long, short, French or full design, made to last.</p>
+    </div>
+    <div>
+      <h3>Visit</h3>
+      <ul>
+        <li>[Address / area]</li>
+        <li>Valby, Copenhagen</li>
+        <li>[Opening hours]</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Follow</h3>
+      <ul>
+        <li>Instagram: [@handle]</li>
+        <li>Facebook: [page name]</li>
+        <li>[Phone / contact]</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Copenhagen Nailzzz</span>
+    <span>Mockup v1, draft for review</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var state = { service:null, detail:null, price:null, date:null, dateLabel:null, time:null };
+  var currentMonth = new Date();
+  currentMonth.setDate(1);
+
+  // ---- SERVICE SELECTION ----
+  var serviceOptions = document.querySelectorAll('.service-option');
+  var toStep2 = document.getElementById('toStep2');
+  serviceOptions.forEach(function(opt){
+    opt.addEventListener('click', function(){
+      serviceOptions.forEach(function(o){ o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      state.service = opt.dataset.name;
+      state.detail = opt.dataset.detail;
+      state.price = opt.dataset.price;
+      toStep2.disabled = false;
+    });
+  });
+
+  // ---- STEP NAV ----
+  function goToStep(n){
+    document.querySelectorAll('.booking-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.getElementById('panel-' + n).classList.add('active');
+    document.querySelectorAll('.step-item').forEach(function(s){
+      var step = parseInt(s.dataset.step);
+      s.classList.remove('active','done');
+      if(step < n) s.classList.add('done');
+      if(step === n) s.classList.add('active');
+    });
+  }
+
+  toStep2.addEventListener('click', function(){ goToStep(2); });
+  document.getElementById('toStep3').addEventListener('click', function(){ goToStep(3); });
+  document.getElementById('toStep4').addEventListener('click', function(){
+    fillSummary();
+    goToStep(4);
+  });
+  document.querySelectorAll('[data-back]').forEach(function(btn){
+    btn.addEventListener('click', function(){ goToStep(parseInt(btn.dataset.back)); });
+  });
+
+  // ---- CALENDAR ----
+  var monthLabel = document.getElementById('monthLabel');
+  var calGrid = document.getElementById('calGrid');
+  var timeGrid = document.getElementById('timeGrid');
+  var toStep3 = document.getElementById('toStep3');
+  var dows = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+  var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function renderCalendar(){
+    monthLabel.textContent = monthNames[currentMonth.getMonth()] + ' ' + currentMonth.getFullYear();
+    calGrid.innerHTML = '';
+    dows.forEach(function(d){
+      var el = document.createElement('div');
+      el.className = 'cal-dow';
+      el.textContent = d;
+      calGrid.appendChild(el);
+    });
+
+    var firstDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+    var startOffset = (firstDay.getDay() + 6) % 7; // Monday-first
+    var daysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth()+1, 0).getDate();
+    var today = new Date(); today.setHours(0,0,0,0);
+
+    for(var i=0; i<startOffset; i++){
+      var empty = document.createElement('div');
+      empty.className = 'cal-day empty';
+      calGrid.appendChild(empty);
+    }
+    for(var d=1; d<=daysInMonth; d++){
+      var dayEl = document.createElement('div');
+      dayEl.className = 'cal-day';
+      dayEl.textContent = d;
+      var thisDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), d);
+      var isSunday = thisDate.getDay() === 0;
+      if(thisDate < today || isSunday){
+        dayEl.classList.add('past');
+      } else {
+        dayEl.addEventListener('click', function(dateObj, el){
+          return function(){
+            document.querySelectorAll('.cal-day').forEach(function(c){ c.classList.remove('selected'); });
+            el.classList.add('selected');
+            state.date = dateObj;
+            state.dateLabel = dateObj.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+            renderTimes();
+            checkStep2Ready();
+          };
+        }(thisDate, dayEl));
+      }
+      calGrid.appendChild(dayEl);
+    }
+  }
+
+  function renderTimes(){
+    var slots = ['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'];
+    timeGrid.innerHTML = '';
+    slots.forEach(function(t){
+      var el = document.createElement('div');
+      el.className = 'time-slot';
+      el.textContent = t;
+      el.addEventListener('click', function(){
+        document.querySelectorAll('.time-slot').forEach(function(c){ c.classList.remove('selected'); });
+        el.classList.add('selected');
+        state.time = t;
+        checkStep2Ready();
+      });
+      timeGrid.appendChild(el);
+    });
+  }
+
+  function checkStep2Ready(){
+    toStep3.disabled = !(state.date && state.time);
+  }
+
+  document.getElementById('prevMonth').addEventListener('click', function(){
+    currentMonth.setMonth(currentMonth.getMonth()-1);
+    renderCalendar();
+  });
+  document.getElementById('nextMonth').addEventListener('click', function(){
+    currentMonth.setMonth(currentMonth.getMonth()+1);
+    renderCalendar();
+  });
+
+  renderCalendar();
+
+  // ---- STEP 3 FORM VALIDATION ----
+  ['fName','fPhone','fEmail'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', checkStep3Ready);
+  });
+  function checkStep3Ready(){
+    var name = document.getElementById('fName').value.trim();
+    var phone = document.getElementById('fPhone').value.trim();
+    var email = document.getElementById('fEmail').value.trim();
+    document.getElementById('toStep4').disabled = !(name && (phone || email));
+  }
+
+  // ---- SUMMARY ----
+  function fillSummary(){
+    document.getElementById('sumService').textContent = state.service + ' \u2013 ' + state.detail;
+    document.getElementById('sumDate').textContent = state.dateLabel;
+    document.getElementById('sumTime').textContent = state.time;
+    document.getElementById('sumName').textContent = document.getElementById('fName').value.trim();
+    var phone = document.getElementById('fPhone').value.trim();
+    var email = document.getElementById('fEmail').value.trim();
+    document.getElementById('sumContact').textContent = [phone, email].filter(Boolean).join(' / ');
+    document.getElementById('sumPrice').textContent = state.price + ' kr';
+  }
+
+  document.getElementById('confirmBooking').addEventListener('click', function(){
+    document.getElementById('successName').textContent = document.getElementById('fName').value.trim();
+    document.getElementById('successDate').textContent = state.dateLabel;
+    document.getElementById('successTime').textContent = state.time;
+    document.querySelectorAll('.booking-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.getElementById('panel-success').classList.add('active');
+    document.querySelectorAll('.step-item').forEach(function(s){ s.classList.add('done'); s.classList.remove('active'); });
+  });
+
+  // ---- PRICE CONFIGURATOR ----
+  var priceMap = {
+    'Long': [
+      { label: 'Super design', price: 250 },
+      { label: 'French / small design', price: 200 },
+      { label: 'Without design', price: 180 }
+    ],
+    'Short': [
+      { label: 'With design', price: 150 },
+      { label: 'No design', price: 100 }
+    ]
+  };
+  var configState = { length: 'Long', style: 'Super design', price: 250 };
+
+  var lengthGroup = document.getElementById('lengthGroup');
+  var styleGroup = document.getElementById('styleGroup');
+  styleGroup.classList.add('style-group');
+  var configPrice = document.getElementById('configPrice');
+  var configDetail = document.getElementById('configDetail');
+
+  function renderStyleGroup(){
+    styleGroup.innerHTML = '';
+    priceMap[configState.length].forEach(function(opt, i){
+      var el = document.createElement('div');
+      el.className = 'choice-word' + (i === 0 ? ' active' : '');
+      el.textContent = opt.label;
+      el.dataset.style = opt.label;
+      el.dataset.price = opt.price;
+      el.addEventListener('click', function(){
+        styleGroup.querySelectorAll('.choice-word').forEach(function(c){ c.classList.remove('active'); });
+        el.classList.add('active');
+        configState.style = opt.label;
+        configState.price = opt.price;
+        updatePriceDisplay();
+      });
+      styleGroup.appendChild(el);
+    });
+    configState.style = priceMap[configState.length][0].label;
+    configState.price = priceMap[configState.length][0].price;
+    updatePriceDisplay();
+  }
+
+  function updatePriceDisplay(){
+    configPrice.textContent = configState.price;
+    configDetail.textContent = configState.style;
+  }
+
+  lengthGroup.querySelectorAll('.choice-word').forEach(function(el){
+    el.addEventListener('click', function(){
+      lengthGroup.querySelectorAll('.choice-word').forEach(function(c){ c.classList.remove('active'); });
+      el.classList.add('active');
+      configState.length = el.dataset.length;
+      renderStyleGroup();
+    });
+  });
+  lengthGroup.querySelector('[data-length="Long"]').classList.add('active');
+  renderStyleGroup();
+
+  document.getElementById('bookThisSet').addEventListener('click', function(){
+    var lengthName = configState.length === 'Long' ? 'Long nails' : 'Short nails';
+    var match = null;
+    document.querySelectorAll('.service-option').forEach(function(opt){
+      if(opt.dataset.name === lengthName && opt.dataset.detail === configState.style){
+        match = opt;
+      }
+    });
+    if(match) match.click();
+  });
+})();
+</script>
+
+</body>
+</html>
