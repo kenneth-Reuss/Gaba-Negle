@@ -1003,6 +1003,10 @@
       <div class="summary-row"><span>Contact</span><span id="sumContact"></span></div>
       <div class="summary-row"><span>Price</span><span id="sumPrice"></span></div>
 
+      <p id="bookingError" style="display:none; color:#9c3d59; font-size:0.85rem; text-align:center; margin-top:14px;">
+        Something went wrong sending your booking. Please try again, or contact us directly.
+      </p>
+
       <div class="booking-nav">
         <button class="btn-plain" data-back="3">&larr; Back</button>
         <button class="btn-next" id="confirmBooking">Confirm booking</button>
@@ -1015,12 +1019,10 @@
         <div class="check">&#10003;</div>
         <h3 style="margin-bottom:10px;">Booking request received</h3>
         <p style="opacity:0.75; max-width:420px; margin:0 auto;">
-          Thanks, <span id="successName"></span>. A confirmation would normally be sent to your email/SMS here. We'll see you on <span id="successDate"></span> at <span id="successTime"></span>.
+          Thanks, <span id="successName"></span>. We've received your request for <span id="successDate"></span> at <span id="successTime"></span> and will confirm with you shortly.
         </p>
       </div>
     </div>
-
-    <p class="booking-note">This is a working mock-up of the booking flow. In the live version, confirmed bookings would sync to a real calendar and send an automatic confirmation by email or SMS.</p>
   </div>
 </section>
 </div>
@@ -1211,13 +1213,53 @@
     document.getElementById('sumPrice').textContent = state.price + ' kr';
   }
 
-  document.getElementById('confirmBooking').addEventListener('click', function(){
-    document.getElementById('successName').textContent = document.getElementById('fName').value.trim();
-    document.getElementById('successDate').textContent = state.dateLabel;
-    document.getElementById('successTime').textContent = state.time;
-    document.querySelectorAll('.booking-panel').forEach(function(p){ p.classList.remove('active'); });
-    document.getElementById('panel-success').classList.add('active');
-    document.querySelectorAll('.step-item').forEach(function(s){ s.classList.add('done'); s.classList.remove('active'); });
+  var BOOKING_EMAIL = 'gabapuch.nails@gmail.com';
+  var confirmBtn = document.getElementById('confirmBooking');
+  var bookingError = document.getElementById('bookingError');
+
+  confirmBtn.addEventListener('click', function(){
+    var name = document.getElementById('fName').value.trim();
+    var phone = document.getElementById('fPhone').value.trim();
+    var email = document.getElementById('fEmail').value.trim();
+    var notes = document.getElementById('fNotes').value.trim();
+
+    var payload = {
+      _subject: 'New booking: ' + name + ' – ' + state.dateLabel + ' ' + state.time,
+      name: name,
+      phone: phone,
+      email: email,
+      notes: notes,
+      service: state.service + ' – ' + state.detail,
+      price: state.price + ' kr',
+      date: state.dateLabel,
+      time: state.time
+    };
+
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = 'Sender...';
+    if(bookingError) bookingError.style.display = 'none';
+
+    fetch('https://formsubmit.co/ajax/' + BOOKING_EMAIL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res){ if(!res.ok) throw new Error('Request failed'); return res.json(); })
+    .then(function(){
+      document.getElementById('successName').textContent = name;
+      document.getElementById('successDate').textContent = state.dateLabel;
+      document.getElementById('successTime').textContent = state.time;
+      document.querySelectorAll('.booking-panel').forEach(function(p){ p.classList.remove('active'); });
+      document.getElementById('panel-success').classList.add('active');
+      document.querySelectorAll('.step-item').forEach(function(s){ s.classList.add('done'); s.classList.remove('active'); });
+    })
+    .catch(function(){
+      if(bookingError) bookingError.style.display = 'block';
+    })
+    .finally(function(){
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = 'Confirm booking';
+    });
   });
 
   // ---- PRICE CONFIGURATOR ----
