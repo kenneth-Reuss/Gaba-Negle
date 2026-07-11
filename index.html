@@ -115,6 +115,7 @@
 
   .hero-badge{
     position: absolute;
+    z-index: 2;
     width: 620px;
     height: 620px;
     border: 1px solid var(--rose-line);
@@ -188,28 +189,24 @@
 
   .sparkle{
     position: absolute;
+    z-index: 2;
     color: var(--gold);
     opacity: 0.8;
   }
 
-  .hero-logo-badge{
-    position: relative;
-    z-index: 2;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 30px;
-    border: 1px solid var(--rose-line);
-    box-shadow: 0 20px 44px rgba(156, 61, 89, 0.25);
-  }
-  .hero-logo-badge video{
+  .hero-logo-video{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  @media (max-width: 600px){
-    .hero-logo-badge{ width: 180px; height: 180px; margin-bottom: 20px; }
+  .hero-scrim{
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(160deg, rgba(247,227,224,0.55) 0%, rgba(242,208,211,0.55) 55%, rgba(244,201,207,0.55) 100%);
   }
 
   /* ---------- MARQUEE ---------- */
@@ -835,22 +832,21 @@
 </nav>
 
 <section class="hero">
+  <video class="hero-logo-video" autoplay muted loop playsinline poster="logo.png">
+    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3F3ExLvss4i6n7uULZOMP1nsUWr/hf_20260711_225709_1831f5cc-95c7-4d58-9391-ecf5a1577fe3.mp4" type="video/mp4">
+  </video>
+  <div class="hero-scrim"></div>
+
   <div class="hero-badge"></div>
   <div class="hero-badge two"></div>
   <svg class="sparkle" style="top:18%; right:14%; width:40px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
   <svg class="sparkle" style="top:30%; right:8%; width:20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
   <svg class="sparkle" style="bottom:22%; left:10%; width:26px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
 
-  <div class="hero-logo-badge">
-    <video autoplay muted loop playsinline poster="logo.png">
-      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3F3ExLvss4i6n7uULZOMP1nsUWr/hf_20260711_225709_1831f5cc-95c7-4d58-9391-ecf5a1577fe3.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div class="hero-eyebrow">Valby &middot; Copenhagen</div>
-  <h1>copenhagen <span class="script">nailzzz</span></h1>
-  <p class="sub">Hand-painted, long-lasting nails done with care. Long, short, French or full design, book your next set today.</p>
-  <div class="cta-row">
+  <div class="hero-eyebrow" style="position:relative; z-index:2;">Valby &middot; Copenhagen</div>
+  <h1 style="position:relative; z-index:2;">copenhagen <span class="script">nailzzz</span></h1>
+  <p class="sub" style="position:relative; z-index:2;">Hand-painted, long-lasting nails done with care. Long, short, French or full design, book your next set today.</p>
+  <div class="cta-row" style="position:relative; z-index:2;">
     <a href="#book" class="btn-primary">Book an appointment</a>
     <a href="#prices" class="btn-ghost">See price list</a>
   </div>
