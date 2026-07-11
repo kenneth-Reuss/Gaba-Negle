@@ -259,6 +259,12 @@
     text-align: center;
     border: 1px solid var(--rose-line);
     box-shadow: 0 10px 24px rgba(156, 61, 89, 0.15);
+    overflow: hidden;
+  }
+  .about-photo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .about-text p{
     line-height: 1.8;
@@ -347,6 +353,13 @@
     padding: 10px;
     border: 1px solid var(--rose-line);
     box-shadow: 0 8px 20px rgba(156, 61, 89, 0.12);
+    overflow: hidden;
+  }
+  .gallery-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
   }
   .gallery-item:nth-child(3n+1){ margin-top: 24px; }
 
@@ -836,7 +849,7 @@
 
 <div class="section-wrap tone-a">
 <section class="about" id="about">
-  <div class="about-photo">[ your photo here ]</div>
+  <div class="about-photo"><img src="images/about-photo.jpg" alt="Copenhagen Nailzzz nail tech in the studio"></div>
   <div class="about-text">
     <span class="script">a little about me</span>
     <h2 style="margin-bottom:20px;">Meet your nail tech</h2>
@@ -883,10 +896,10 @@
     <h2>Recent sets</h2>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item">[ photo 1 ]</div>
-    <div class="gallery-item">[ photo 2 ]</div>
-    <div class="gallery-item">[ photo 3 ]</div>
-    <div class="gallery-item">[ photo 4 ]</div>
+    <div class="gallery-item"><img src="images/gallery-1.jpg" alt="Polka dot nail set"></div>
+    <div class="gallery-item"><img src="images/gallery-2.webp" alt="Pink and yellow French tip nail set"></div>
+    <div class="gallery-item"><img src="images/gallery-3.webp" alt="Purple 3D flower nail art"></div>
+    <div class="gallery-item"><img src="images/gallery-4.webp" alt="Colorful star nail art with rhinestones"></div>
     <div class="gallery-item">[ photo 5 ]</div>
     <div class="gallery-item">[ photo 6 ]</div>
     <div class="gallery-item">[ photo 7 ]</div>
