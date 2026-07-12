@@ -560,11 +560,43 @@
   }
   .cal-day.empty{ cursor: default; }
   .cal-day.past{ opacity: 0.25; cursor: not-allowed; }
-  .cal-day.requestable{
-    border: 1px dashed var(--rose-mid);
-    color: var(--rose-mid);
+  .cal-day.available{
+    background: #dcf3e3;
+    border: 1px solid #4caf7d;
+    color: #1b5e3c;
+    font-weight: 500;
   }
-  .cal-day:not(.empty):not(.past):hover{ background: var(--blush-bg); }
+  .cal-day.available:hover{ background: #c9ecd5; }
+  .cal-day.requestable{
+    background: #fdf1c8;
+    border: 1px dashed #d9a441;
+    color: #8a6410;
+  }
+  .cal-day.requestable:hover{ background: #fbe6a3; }
+  .cal-day.vacation{
+    background: #dbeaf7;
+    border: 1px solid #6b9bc3;
+    color: #2c5170;
+    opacity: 1;
+    cursor: not-allowed;
+  }
+  .cal-day:not(.empty):not(.past):not(.available):not(.requestable):not(.vacation):hover{ background: var(--blush-bg); }
+  .cal-legend{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.72rem;
+    color: var(--ink);
+    opacity: 0.8;
+    margin: -14px 0 20px;
+  }
+  .cal-legend .dot{
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
   .cal-day.selected{
     background: var(--rose-deep);
     color: var(--white);
@@ -1041,7 +1073,11 @@
         <button id="nextMonth" aria-label="Next month">&#8250;</button>
       </div>
       <div class="cal-grid" id="calGrid"></div>
-      <p style="font-size:0.72rem; color:var(--rose-mid); opacity:0.8; margin:-14px 0 20px;">Dashed dates aren't open for direct booking yet &ndash; click to send a request instead.</p>
+      <div class="cal-legend">
+        <span><span class="dot" style="background:#4caf7d;"></span>Available &ndash; book directly</span>
+        <span><span class="dot" style="background:#d9a441;"></span>Ask availability &ndash; click to send a request</span>
+        <span><span class="dot" style="background:#6b9bc3;"></span>Closed &ndash; on holiday</span>
+      </div>
 
       <div id="dateAvailablePart">
         <div class="time-label">Available times</div>
@@ -1283,10 +1319,13 @@
       var isRestrictedMonth = !!RESTRICTED_MONTHS[monthKey(thisDate)];
       var isAvailable = !!AVAILABLE_DATES[dateKey(thisDate)];
 
-      if(thisDate < today || isVacation){
+      if(thisDate < today){
         dayEl.classList.add('past');
-        if(isVacation) dayEl.title = 'Closed for holiday';
+      } else if(isVacation){
+        dayEl.classList.add('vacation');
+        dayEl.title = 'Closed for holiday';
       } else if(isAvailable){
+        dayEl.classList.add('available');
         dayEl.addEventListener('click', function(dateObj, el){
           return function(){
             document.querySelectorAll('.cal-day').forEach(function(c){ c.classList.remove('selected'); });
