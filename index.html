@@ -819,12 +819,9 @@
   }
 
   .insta-banner{
-    background: linear-gradient(135deg, var(--blush-card), #e894a2);
-    border-radius: 28px;
     text-align: center;
     padding: 70px 6%;
-    margin: 0 6% 100px;
-    box-shadow: 0 14px 32px rgba(156, 61, 89, 0.18);
+    margin: 0 auto 100px;
   }
   .insta-banner h2{ margin-bottom: 14px; }
   .insta-banner p{ opacity: 0.75; margin-bottom: 28px; }
@@ -914,7 +911,7 @@
 
   <div class="hero-eyebrow hero-eyebrow-shift">Valby &middot; Copenhagen</div>
   <h1 class="sr-only">Copenhagen Nailzzz</h1>
-  <p class="sub sr-only">Hand-painted, long-lasting nails done with care. Long, short, French or full design, book your next set today.</p>
+  <p class="sub sr-only">Hand painted, long lasting nails done with care. Long, short, French or full design, book your next set today.</p>
   <div class="cta-row hero-cta-shift">
     <a href="#book" class="btn-primary">Book an appointment</a>
     <a href="#prices" class="btn-ghost">See price list</a>
@@ -923,15 +920,15 @@
 
 <div class="marquee">
   <div class="marquee-track">
-    <span>Hand-painted nail art</span>
+    <span>Hand painted nail art</span>
     <span>&middot;</span>
-    <span>Long-lasting gel</span>
+    <span>Long lasting gel</span>
     <span>&middot;</span>
     <span>Based in Valby, Copenhagen</span>
     <span>&middot;</span>
-    <span>Hand-painted nail art</span>
+    <span>Hand painted nail art</span>
     <span>&middot;</span>
-    <span>Long-lasting gel</span>
+    <span>Long lasting gel</span>
     <span>&middot;</span>
     <span>Based in Valby, Copenhagen</span>
     <span>&middot;</span>
@@ -944,7 +941,7 @@
   <div class="about-text">
     <span class="script">A little about me</span>
     <h2 style="margin-bottom:20px;">Meet your nail tech</h2>
-    <p>I fell in love with nails messing around with polish and designs among friends, and that hobby quickly turned into hands-on training as an apprentice at a salon, I haven't looked back since. What I love most is the creative process, dreaming up a design and watching a client's face light up when they see the finished set. My favorite work leans dramatic: sculpted 3D details, charms, and long, bold shapes that make a statement.</p>
+    <p>I fell in love with nails messing around with polish and designs among friends, and that hobby quickly turned into hands on training as an apprentice at a salon, I haven't looked back since. What I love most is the creative process, dreaming up a design and watching a client's face light up when they see the finished set. My favorite work leans dramatic: sculpted 3D details, charms, and long, bold shapes that make a statement.</p>
     <p>I only work with vegan products in the studio, and every appointment is meant to feel like hanging out with a friend rather than a clinical treatment, grab a seat, relax, and let's design your next set together. For me, nails are just another way to express who you are.</p>
   </div>
 </section>
@@ -1090,9 +1087,9 @@
       </div>
       <div class="cal-grid" id="calGrid"></div>
       <div class="cal-legend">
-        <span><span class="dot" style="background:#4caf7d;"></span>Available &ndash; book directly</span>
-        <span><span class="dot" style="background:#d9a441;"></span>Ask availability &ndash; click to send a request</span>
-        <span><span class="dot" style="background:#6b9bc3;"></span>Closed &ndash; on holiday</span>
+        <span><span class="dot" style="background:#4caf7d;"></span>Available book directly</span>
+        <span><span class="dot" style="background:#d9a441;"></span>Ask availability click to send a request</span>
+        <span><span class="dot" style="background:#6b9bc3;"></span>Closed on holiday</span>
       </div>
 
       <div id="dateAvailablePart">
@@ -1194,7 +1191,7 @@
 
 <div class="insta-banner">
   <h2>Follow along</h2>
-  <p>Daily nail inspo, new designs and behind-the-scenes from the studio.</p>
+  <p>Daily nail inspo, new designs and behind the scenes from the studio.</p>
   <div class="cta-row" style="justify-content:center;">
     <a href="https://www.instagram.com/cph_nailz/" target="_blank" rel="noopener" class="btn-primary">@cph_nailz</a>
   </div>
@@ -1204,22 +1201,22 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <span class="script">Copenhagen Nailzzz</span>
-      <p>Hand-painted nail sets in Valby, Copenhagen. Long, short, French or full design, made to last.</p>
+      <p>Hand painted nail sets in Valby, Copenhagen. Long, short, French or full design, made to last.</p>
     </div>
     <div>
       <h3>Visit</h3>
       <ul>
-        <li>[Address / area]</li>
+        <li>Toftegårds Allé 26</li>
         <li>Valby, Copenhagen</li>
-        <li>[Opening hours]</li>
+        <li>By agreement</li>
       </ul>
     </div>
     <div>
       <h3>Follow</h3>
       <ul>
         <li>Instagram: <a href="https://www.instagram.com/cph_nailz/" target="_blank" rel="noopener">@cph_nailz</a></li>
-        <li>Facebook: [page name]</li>
-        <li>[Phone / contact]</li>
+        <li>Facebook: <a href="https://www.facebook.com/share/1JLDb3wimH/?mibextid=wwXIfr" target="_blank" rel="noopener">Copenhagen Nailzzz</a></li>
+        <li>+45 71 36 13 66</li>
       </ul>
     </div>
   </div>
@@ -1373,7 +1370,7 @@
         dayEl.classList.add('past');
       } else if(isRestrictedMonth){
         dayEl.classList.add('requestable');
-        dayEl.title = 'Not open for direct booking yet - click to send a request';
+        dayEl.title = 'Not open for direct booking yet click to send a request';
         dayEl.addEventListener('click', function(dateObj){
           return function(){
             showDateRequestBox(dateObj);
@@ -1490,7 +1487,7 @@
 
   // ---- SUMMARY ----
   function fillSummary(){
-    document.getElementById('sumService').textContent = state.service + ' \u2013 ' + state.detail;
+    document.getElementById('sumService').textContent = state.service + ' ' + state.detail;
     document.getElementById('sumDate').textContent = state.dateLabel;
     document.getElementById('sumTime').textContent = state.time;
     document.getElementById('sumName').textContent = document.getElementById('fName').value.trim();
@@ -1511,12 +1508,12 @@
     var notes = document.getElementById('fNotes').value.trim();
 
     var payload = {
-      _subject: 'New booking: ' + name + ' – ' + state.dateLabel + ' ' + state.time,
+      _subject: 'New booking: ' + name + ' ' + state.dateLabel + ' ' + state.time,
       name: name,
       phone: phone,
       email: email,
       notes: notes,
-      service: state.service + ' – ' + state.detail,
+      service: state.service + ' ' + state.detail,
       price: state.price + ' kr',
       date: state.dateLabel,
       time: state.time
