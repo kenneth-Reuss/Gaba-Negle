@@ -560,6 +560,10 @@
   }
   .cal-day.empty{ cursor: default; }
   .cal-day.past{ opacity: 0.25; cursor: not-allowed; }
+  .cal-day.requestable{
+    border: 1px dashed var(--rose-mid);
+    color: var(--rose-mid);
+  }
   .cal-day:not(.empty):not(.past):hover{ background: var(--blush-bg); }
   .cal-day.selected{
     background: var(--rose-deep);
@@ -1037,13 +1041,45 @@
         <button id="nextMonth" aria-label="Next month">&#8250;</button>
       </div>
       <div class="cal-grid" id="calGrid"></div>
+      <p style="font-size:0.72rem; color:var(--rose-mid); opacity:0.8; margin:-14px 0 20px;">Dashed dates aren't open for direct booking yet &ndash; click to send a request instead.</p>
 
-      <div class="time-label">Available times</div>
-      <div class="time-grid" id="timeGrid"></div>
+      <div id="dateAvailablePart">
+        <div class="time-label">Available times</div>
+        <div class="time-grid" id="timeGrid"></div>
 
-      <div class="booking-nav">
-        <button class="btn-plain" data-back="1">&larr; Back</button>
-        <button class="btn-next" id="toStep3" disabled>Continue</button>
+        <div class="booking-nav">
+          <button class="btn-plain" data-back="1">&larr; Back</button>
+          <button class="btn-next" id="toStep3" disabled>Continue</button>
+        </div>
+      </div>
+
+      <div id="dateRequestBox" style="display:none;">
+        <p class="booking-note" style="margin-top:0;">This date isn't open for online booking yet. Send a quick request and we'll get back to you by email.</p>
+        <div class="form-field">
+          <label>Full name</label>
+          <input type="text" id="reqName" placeholder="Your name">
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" id="reqEmail" placeholder="you@email.com">
+        </div>
+        <div class="form-field">
+          <label>Message (optional)</label>
+          <textarea id="reqNote" rows="2" placeholder="Anything you'd like to add"></textarea>
+        </div>
+        <p id="requestError" style="display:none; color:#9c3d59; font-size:0.85rem; margin-bottom:10px;">Please enter your name and email.</p>
+        <div class="booking-nav">
+          <button class="btn-plain" id="cancelRequest">&larr; Back to calendar</button>
+          <button class="btn-next" id="sendDateRequest">Send request</button>
+        </div>
+      </div>
+
+      <div id="dateRequestSuccess" style="display:none;">
+        <div class="confirm-screen">
+          <div class="check">&#10003;</div>
+          <h3 style="margin-bottom:10px;">Request sent</h3>
+          <p style="opacity:0.75;">Thanks! We'll get back to you by email about <span id="reqSentDate"></span>.</p>
+        </div>
       </div>
     </div>
 
@@ -1144,6 +1180,7 @@
 <script>
 (function(){
   var state = { service:null, detail:null, price:null, date:null, dateLabel:null, time:null };
+  var requestedDate = null;
   var currentMonth = new Date();
   currentMonth.setDate(1);
 
@@ -1191,7 +1228,32 @@
   var dows = ['Mo','Tu','We','Th','Fr','Sa','Su'];
   var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
+  var AVAILABLE_DATES = {
+    '2026-7-15': true, '2026-7-16': true, '2026-7-20': true, '2026-7-25': true, '2026-7-26': true,
+    '2026-8-1': true, '2026-8-2': true, '2026-8-6': true, '2026-8-7': true, '2026-8-26': true, '2026-8-27': true
+  };
+  var RESTRICTED_MONTHS = { '2026-7': true, '2026-8': true };
+  var VACATION_START = new Date(2026, 7, 10);
+  var VACATION_END = new Date(2026, 7, 23);
+
+  function dateKey(d){ return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(); }
+  function monthKey(d){ return d.getFullYear() + '-' + (d.getMonth()+1); }
+
+  function showDateRequestBox(dateObj){
+    requestedDate = dateObj;
+    document.getElementById('dateAvailablePart').style.display = 'none';
+    document.getElementById('dateRequestSuccess').style.display = 'none';
+    document.getElementById('dateRequestBox').style.display = 'block';
+  }
+
+  function resetDateStepUI(){
+    document.getElementById('dateAvailablePart').style.display = 'block';
+    document.getElementById('dateRequestBox').style.display = 'none';
+    document.getElementById('dateRequestSuccess').style.display = 'none';
+  }
+
   function renderCalendar(){
+    resetDateStepUI();
     monthLabel.textContent = monthNames[currentMonth.getMonth()] + ' ' + currentMonth.getFullYear();
     calGrid.innerHTML = '';
     dows.forEach(function(d){
@@ -1217,8 +1279,34 @@
       dayEl.textContent = d;
       var thisDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), d);
       var isSunday = thisDate.getDay() === 0;
-      if(thisDate < today || isSunday){
+      var isVacation = thisDate >= VACATION_START && thisDate <= VACATION_END;
+      var isRestrictedMonth = !!RESTRICTED_MONTHS[monthKey(thisDate)];
+      var isAvailable = !!AVAILABLE_DATES[dateKey(thisDate)];
+
+      if(thisDate < today || isVacation){
         dayEl.classList.add('past');
+        if(isVacation) dayEl.title = 'Closed for holiday';
+      } else if(isAvailable){
+        dayEl.addEventListener('click', function(dateObj, el){
+          return function(){
+            document.querySelectorAll('.cal-day').forEach(function(c){ c.classList.remove('selected'); });
+            el.classList.add('selected');
+            state.date = dateObj;
+            state.dateLabel = dateObj.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+            renderTimes();
+            checkStep2Ready();
+          };
+        }(thisDate, dayEl));
+      } else if(isSunday){
+        dayEl.classList.add('past');
+      } else if(isRestrictedMonth){
+        dayEl.classList.add('requestable');
+        dayEl.title = 'Not open for direct booking yet - click to send a request';
+        dayEl.addEventListener('click', function(dateObj){
+          return function(){
+            showDateRequestBox(dateObj);
+          };
+        }(thisDate));
       } else {
         dayEl.addEventListener('click', function(dateObj, el){
           return function(){
@@ -1255,6 +1343,56 @@
   function checkStep2Ready(){
     toStep3.disabled = !(state.date && state.time);
   }
+
+  document.getElementById('cancelRequest').addEventListener('click', function(){
+    resetDateStepUI();
+  });
+
+  document.getElementById('sendDateRequest').addEventListener('click', function(){
+    var name = document.getElementById('reqName').value.trim();
+    var email = document.getElementById('reqEmail').value.trim();
+    var note = document.getElementById('reqNote').value.trim();
+    var requestError = document.getElementById('requestError');
+    var sendBtn = document.getElementById('sendDateRequest');
+
+    if(!name || !email){
+      requestError.style.display = 'block';
+      return;
+    }
+    requestError.style.display = 'none';
+
+    var dateLabel = requestedDate.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+    var payload = {
+      _subject: 'Date request: ' + dateLabel,
+      name: name,
+      email: email,
+      note: note,
+      requested_date: dateLabel
+    };
+
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending...';
+
+    fetch('https://formsubmit.co/ajax/' + BOOKING_EMAIL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res){ if(!res.ok) throw new Error('Request failed'); return res.json(); })
+    .then(function(){
+      document.getElementById('reqSentDate').textContent = dateLabel;
+      document.getElementById('dateRequestBox').style.display = 'none';
+      document.getElementById('dateRequestSuccess').style.display = 'block';
+    })
+    .catch(function(){
+      requestError.textContent = 'Something went wrong sending your request. Please try again.';
+      requestError.style.display = 'block';
+    })
+    .finally(function(){
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'Send request';
+    });
+  });
 
   document.getElementById('prevMonth').addEventListener('click', function(){
     currentMonth.setMonth(currentMonth.getMonth()-1);
