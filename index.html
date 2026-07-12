@@ -1215,6 +1215,23 @@
 
 <script>
 (function(){
+  // Force-play background videos: mobile browsers (esp. iOS Safari with
+  // Low Power Mode or "Auto-Play Video Previews" set to off) can silently
+  // block autoplay even with muted+playsinline set as HTML attributes.
+  function tryPlayAllVideos(){
+    document.querySelectorAll('video[autoplay]').forEach(function(v){
+      v.muted = true;
+      var p = v.play();
+      if(p && p.catch) p.catch(function(){});
+    });
+  }
+  document.addEventListener('DOMContentLoaded', tryPlayAllVideos);
+  ['touchstart','click','scroll'].forEach(function(evt){
+    document.addEventListener(evt, tryPlayAllVideos, { once: true, passive: true });
+  });
+})();
+
+(function(){
   var state = { service:null, detail:null, price:null, date:null, dateLabel:null, time:null };
   var requestedDate = null;
   var currentMonth = new Date();
