@@ -212,6 +212,21 @@
     height: 100%;
     object-fit: cover;
   }
+  .hero-eyebrow-shift{
+    position: relative;
+    z-index: 2;
+    margin-top: -200px;
+  }
+  .hero-cta-shift{
+    position: relative;
+    z-index: 2;
+    margin-top: 200px;
+  }
+  @media (max-width: 600px){
+    .hero-eyebrow-shift{ margin-top: -50px; }
+    .hero-cta-shift{ margin-top: 300px; }
+  }
+
   .hero-scrim{
     position: absolute;
     inset: 0;
@@ -896,10 +911,10 @@
   <svg class="sparkle" style="top:30%; right:8%; width:20px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
   <svg class="sparkle" style="bottom:22%; left:10%; width:26px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 6-1 11-2 12s-6 2-12 2c6 0 11 1 12 2s2 6 2 12c0-6 1-11 2-12s6-2 12-2c-6 0-11-1-12-2S12 6 12 0z"/></svg>
 
-  <div class="hero-eyebrow" style="position:relative; z-index:2; margin-top:-200px;">Valby &middot; Copenhagen</div>
+  <div class="hero-eyebrow hero-eyebrow-shift">Valby &middot; Copenhagen</div>
   <h1 class="sr-only">copenhagen nailzzz</h1>
   <p class="sub sr-only">Hand-painted, long-lasting nails done with care. Long, short, French or full design, book your next set today.</p>
-  <div class="cta-row" style="position:relative; z-index:2; margin-top:200px;">
+  <div class="cta-row hero-cta-shift">
     <a href="#book" class="btn-primary">Book an appointment</a>
     <a href="#prices" class="btn-ghost">See price list</a>
   </div>
