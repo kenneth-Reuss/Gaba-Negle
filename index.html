@@ -899,9 +899,9 @@
 </nav>
 
 <section class="hero">
-  <video class="hero-logo-video" autoplay muted loop playsinline poster="logo.png">
-    <source media="(max-width: 600px)" src="https://d8j0ntlcm91z4.cloudfront.net/user_3F3ExLvss4i6n7uULZOMP1nsUWr/hf_20260712_211109_a6433671-1867-4fe5-900f-63d96e52512b.mp4" type="video/mp4">
-    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3F3ExLvss4i6n7uULZOMP1nsUWr/hf_20260711_225709_1831f5cc-95c7-4d58-9391-ecf5a1577fe3.mp4" type="video/mp4">
+  <video class="hero-logo-video" id="heroLogoVideo" autoplay muted loop playsinline poster="logo.png"
+    data-mobile-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F3ExLvss4i6n7uULZOMP1nsUWr/hf_20260712_211109_a6433671-1867-4fe5-900f-63d96e52512b.mp4"
+    data-desktop-src="https://d8j0ntlcm91z4.cloudfront.net/user_3F3ExLvss4i6n7uULZOMP1nsUWr/hf_20260711_225709_1831f5cc-95c7-4d58-9391-ecf5a1577fe3.mp4">
   </video>
   <div class="hero-scrim"></div>
 
@@ -1230,6 +1230,21 @@
 </footer>
 
 <script>
+(function(){
+  // <source media="..."> inside <video> is not reliably honored by
+  // browsers (that attribute is only for <picture>), so pick the right
+  // hero video source manually based on viewport width before it loads.
+  var heroVideo = document.getElementById('heroLogoVideo');
+  if(heroVideo){
+    var isMobile = window.matchMedia('(max-width: 600px)').matches;
+    var src = isMobile ? heroVideo.dataset.mobileSrc : heroVideo.dataset.desktopSrc;
+    if(src){
+      heroVideo.src = src;
+      heroVideo.load();
+    }
+  }
+})();
+
 (function(){
   // Force-play background videos: mobile browsers (esp. iOS Safari with
   // Low Power Mode or "Auto-Play Video Previews" set to off) can silently
