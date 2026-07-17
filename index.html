@@ -72,6 +72,7 @@
   }
 
   nav .brand{
+    grid-column: 1;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -85,6 +86,7 @@
   }
 
   nav ul{
+    grid-column: 2;
     display: flex;
     gap: 32px;
     list-style: none;
@@ -95,6 +97,7 @@
   nav ul a:hover{ color: var(--rose-deep); }
 
   .nav-book{
+    grid-column: 3;
     background: var(--rose-deep);
     color: var(--white) !important;
     padding: 10px 22px;
@@ -229,7 +232,7 @@
   }
   @media (max-width: 600px){
     .hero-eyebrow-shift{ margin-top: -100px; }
-    .hero-cta-shift{ margin-top: 150px; }
+    .hero-cta-shift{ margin-top: -180px; }
   }
 
   .hero-scrim{
